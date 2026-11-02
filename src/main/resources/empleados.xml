@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<empleados empresa="TechNova S.A." actualizado="2025-09-15">
+  <empleado id="E001">
+    <nombre>Ana Pérez</nombre>
+    <departamento>Desarrollo</departamento>
+    <salario moneda="EUR">34000.50</salario>
+    <fechaAlta>2023-02-10</fechaAlta>
+  </empleado>
+  <empleado id="E002">
+    <nombre>Jorge Martín</nombre>
+    <departamento>Soporte</departamento>
+    <salario moneda="EUR">28500</salario>
+    <fechaAlta>2022-11-03</fechaAlta>
+  </empleado>
+  <empleado id="E003">
+    <nombre>Lucía Gómez</nombre>
+    <departamento>Desarrollo</departamento>
+    <salario moneda="EUR">38500.75</salario>
+    <fechaAlta>2024-07-21</fechaAlta>
+  </empleado>
+  <empleado id="E004">
+    <nombre>Samuel Ortega</nombre>
+    <departamento>Marketing</departamento>
+    <salario moneda="EUR">31000</salario>
+    <fechaAlta>2021-05-18</fechaAlta>
+  </empleado>
+</empleados>

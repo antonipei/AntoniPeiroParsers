@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogo actualizado="2025-08-01">
+  <libro isbn="978-0134685991">
+    <titulo>Effective Java</titulo>
+    <autor>
+      <nombre>Joshua Bloch</nombre>
+      <nacimiento>1961-08-28</nacimiento>
+    </autor>
+    <anio>2018</anio>
+    <generos>
+      <genero>Tecnología</genero>
+      <genero>Programación</genero>
+    </generos>
+    <disponible>true</disponible>
+    <prestamos>
+      <prestamo>
+        <usuario>u123</usuario>
+        <fecha>2024-10-10</fecha>
+      </prestamo>
+    </prestamos>
+  </libro>
+  <libro isbn="978-1492056270">
+    <titulo>Java Cookbook</titulo>
+    <autor>
+      <nombre>Ian F. Darwin</nombre>
+      <nacimiento>1956-07-01</nacimiento>
+    </autor>
+    <anio>2020</anio>
+    <generos>
+      <genero>Tecnología</genero>
+      <genero>Recetario</genero>
+    </generos>
+    <disponible>false</disponible>
+  </libro>
+  <libro isbn="978-0321356680">
+    <titulo>Test Driven Development</titulo>
+    <autor>
+      <nombre>Kent Beck</nombre>
+      <nacimiento>1961-03-31</nacimiento>
+    </autor>
+    <anio>2002</anio>
+    <generos>
+      <genero>Tecnología</genero>
+      <genero>Metodologías</genero>
+    </generos>
+    <disponible>true</disponible>
+  </libro>
+</catalogo>

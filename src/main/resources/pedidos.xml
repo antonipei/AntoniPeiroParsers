@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pedidos tienda="GadgetWorld" actualizado="2025-07-12">
+  <pedido id="P-1001">
+    <cliente>
+      <nombre>María López</nombre>
+      <email>maria@example.com</email>
+    </cliente>
+    <fecha>2025-06-30</fecha>
+    <items>
+      <item sku="GW-USB-C-HUB">
+        <descripcion>USB-C 7-en-1 Hub</descripcion>
+        <cantidad>2</cantidad>
+        <precioUnitario moneda="EUR">29.99</precioUnitario>
+      </item>
+      <item sku="GW-MOUSE-PRO">
+        <descripcion>Ratón inalámbrico Pro</descripcion>
+        <cantidad>1</cantidad>
+        <precioUnitario moneda="EUR">24.50</precioUnitario>
+      </item>
+    </items>
+    <total moneda="EUR">84.48</total>
+  </pedido>
+  <pedido id="P-1002">
+    <cliente>
+      <nombre>Carlos Ruiz</nombre>
+      <email>carlos@example.com</email>
+    </cliente>
+    <fecha>2025-07-01</fecha>
+    <items>
+      <item sku="GW-KEY-MECH">
+        <descripcion>Teclado mecánico 60%</descripcion>
+        <cantidad>1</cantidad>
+        <precioUnitario moneda="EUR">79.90</precioUnitario>
+      </item>
+      <item sku="GW-PAD-XL">
+        <descripcion>Alfombrilla XL</descripcion>
+        <cantidad>1</cantidad>
+        <precioUnitario moneda="EUR">14.95</precioUnitario>
+      </item>
+    </items>
+    <total moneda="EUR">94.85</total>
+  </pedido>
+</pedidos>
