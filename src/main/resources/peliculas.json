@@ -1,0 +1,48 @@
+{
+  "peliculas": [
+    {
+      "id": "M001",
+      "titulo": "El algoritmo invisible",
+      "director": "A. Turing",
+      "estreno": 2014,
+      "duracionMin": 113,
+      "generos": [
+        "Drama",
+        "Biografía"
+      ],
+      "puntuaciones": {
+        "imdb": 7.7,
+        "rt": 89
+      }
+    },
+    {
+      "id": "M002",
+      "titulo": "Compiladores: El origen",
+      "director": "G. Backus",
+      "estreno": 2005,
+      "duracionMin": 98,
+      "generos": [
+        "Documental"
+      ],
+      "puntuaciones": {
+        "imdb": 7.1,
+        "rt": 74
+      }
+    },
+    {
+      "id": "M003",
+      "titulo": "Overflow",
+      "director": "K. Thompson",
+      "estreno": 2019,
+      "duracionMin": 101,
+      "generos": [
+        "Thriller",
+        "Tecnología"
+      ],
+      "puntuaciones": {
+        "imdb": 6.5,
+        "rt": 65
+      }
+    }
+  ]
+}

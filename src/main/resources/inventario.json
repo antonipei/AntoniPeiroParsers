@@ -1,0 +1,59 @@
+{
+  "almacen": "A-1 Madrid",
+  "actualizado": "2025-09-10T10:30:00",
+  "productos": [
+    {
+      "id": "PR-100",
+      "nombre": "SSD 1TB NVMe",
+      "stock": 12,
+      "precio": 79.99,
+      "tags": [
+        "almacenamiento",
+        "nvme"
+      ],
+      "ubicacion": {
+        "pasillo": 1,
+        "estante": "A"
+      }
+    },
+    {
+      "id": "PR-101",
+      "nombre": "RAM 16GB DDR4",
+      "stock": 3,
+      "precio": 42.5,
+      "tags": [
+        "memoria"
+      ],
+      "ubicacion": {
+        "pasillo": 1,
+        "estante": "B"
+      }
+    },
+    {
+      "id": "PR-102",
+      "nombre": "Fuente 650W 80+ Gold",
+      "stock": 7,
+      "precio": 89.0,
+      "tags": [
+        "fuente"
+      ],
+      "ubicacion": {
+        "pasillo": 2,
+        "estante": "C"
+      }
+    },
+    {
+      "id": "PR-103",
+      "nombre": "Caja MicroATX",
+      "stock": 0,
+      "precio": 55.75,
+      "tags": [
+        "caja"
+      ],
+      "ubicacion": {
+        "pasillo": 3,
+        "estante": "A"
+      }
+    }
+  ]
+}

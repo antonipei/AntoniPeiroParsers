@@ -1,0 +1,82 @@
+[
+  {
+    "id": "A001",
+    "nombre": "Laura Navarro",
+    "matriculado": true,
+    "fechaNacimiento": "2006-05-14",
+    "notas": [
+      {
+         "asignatura": "Programación multimedia y dispositivos móviles",
+         "nota": 8.2,
+      },
+      {
+         "asignatura": "Acceso a datos",
+         "nota": 7.5,
+      },
+      {
+         "asignatura": "Programación de servicios y procesos",
+         "nota": 6.5,
+      }
+    ],
+  },
+  {
+    "id": "A002",
+    "nombre": "Diego Sánchez",
+    "matriculado": true,
+    "fechaNacimiento": "2005-11-02",
+    "notas": [
+      {
+         "asignatura": "Programación multimedia y dispositivos móviles",
+         "nota": 5.2,
+      },
+      {
+         "asignatura": "Acceso a datos",
+         "nota": 6.5,
+      },
+      {
+         "asignatura": "Programación de servicios y procesos",
+         "nota": 4.5,
+      }
+    ],
+  },
+  {
+    "id": "A003",
+    "nombre": "Elena Prieto",
+    "matriculado": false,
+    "fechaNacimiento": "2006-01-22",
+    "notas": [
+      {
+         "asignatura": "Programación multimedia y dispositivos móviles",
+         "nota": 9.2,
+      },
+      {
+         "asignatura": "Acceso a datos",
+         "nota": 9.7,
+      },
+      {
+         "asignatura": "Programación de servicios y procesos",
+         "nota": 8.7,
+      }
+    ],
+  },
+  {
+    "id": "A004",
+    "nombre": "Hugo Vega",
+    "matriculado": true,
+    "fechaNacimiento": "2005-09-09",
+    "notas": [
+      {
+         "asignatura": "Programación multimedia y dispositivos móviles",
+         "nota": 7.2,
+      },
+      {
+         "asignatura": "Acceso a datos",
+         "nota": 7.5,
+      },
+      {
+         "asignatura": "Programación de servicios y procesos",
+         "nota": 9.1,
+      }
+    ],
+  }
+]
