@@ -6,6 +6,8 @@ import org.json.JSONTokener;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -14,7 +16,8 @@ public class MainJSON {
     public static void main(String[] args) {
         MainJSON main = new MainJSON();
 
-        System.out.println("5. LISTADO DE ALUMNOS");
+        // 5. Listado de alumnos
+        System.out.println("=== 5. LISTADO DE ALUMNOS ===");
         try {
             Alumno[] alumnos = main.parsearAlumnos("alumnos.json");
             if (alumnos != null) {
@@ -22,8 +25,9 @@ public class MainJSON {
                     System.out.println("Alumno: " + a.getNombre() + " | Fecha de nacimiento: " + a.getFechaNacimiento());
                 }
 
-                System.out.println("6. OBJETOS Y ESTADÍSTICAS");
-                System.out.println("asignatura mas alta de alumno");
+                // 6. Objetos y estadísticas
+                System.out.println("\n=== 6. OBJETOS Y ESTADÍSTICAS ===");
+                System.out.println("a) Asignatura con la nota más alta por alumno:");
                 for (Alumno a : alumnos) {
                     if (a.getNotas() != null && a.getNotas().length > 0) {
                         Nota mejorNota = a.getNotas()[0];
@@ -53,19 +57,20 @@ public class MainJSON {
                 }
 
                 if (mejorAlumno != null) {
-                    System.out.println("alumno con nota media mas alta: " + mejorAlumno.getNombre() + " (Media: " + String.format(Locale.US, "%.2f", maxMedia) + ")");
+                    System.out.println("\nb) Alumno con la nota media más alta: " + mejorAlumno.getNombre() + " (Media: " + String.format(Locale.US, "%.2f", maxMedia) + ")");
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error procesando alumnos.json: " + e.getMessage());
         }
 
-        System.out.println("7. CONSULTA DE INVENTARIO");
+        // 7. Consulta de inventario
+        System.out.println("\n=== 7. CONSULTA DE INVENTARIO ===");
         try {
             Producto[] inventario = main.parsearInventario("inventario.json");
             if (inventario != null) {
                 Scanner scanner = new Scanner(System.in);
-                System.out.print("introduce el numero del producto: ");
+                System.out.print("Introduce el nombre del producto a buscar: ");
                 String busqueda = scanner.nextLine().trim();
 
                 Producto encontrado = null;
@@ -82,17 +87,18 @@ public class MainJSON {
                     System.out.println("Producto no encontrado en el inventario.");
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error procesando inventario.json: " + e.getMessage());
         }
 
+        // 8. Películas
         System.out.println("\n=== 8. PELÍCULAS ===");
         try {
             Pelicula[] peliculas = main.parsearPeliculas("peliculas.json");
             if (peliculas != null) {
                 Map<Pelicula, Double> mediasPeliculas = new HashMap<>();
                 for (Pelicula p : peliculas) {
-                    double rtNormalizado = p.getRottenTomatoes() / 10.0;
+                    double rtNormalizado = p.getRottenTomatoes() / 10.0; // Escala 1-100 a 1-10
                     double mediaFinal = (p.getImdb() + rtNormalizado) / 2.0;
                     mediasPeliculas.put(p, mediaFinal);
                 }
@@ -116,31 +122,42 @@ public class MainJSON {
                     System.out.println("- " + genero);
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error procesando peliculas.json: " + e.getMessage());
         }
     }
 
+    private InputStream abrirFichero(String fichero) throws IOException {
+        InputStream is = getClass().getResourceAsStream("/" + fichero);
+        if (is != null) return is;
+
+        Path path = Path.of(fichero);
+        if (Files.exists(path)) {
+            return Files.newInputStream(path);
+        }
+        throw new IOException("No se encuentra el fichero: " + fichero);
+    }
+
     public Alumno[] parsearAlumnos(String fichero) throws IOException {
         Alumno[] alumnos = null;
-        try (InputStream is = getClass().getResourceAsStream("/" + fichero)) {
-            if (is == null) return null;
+        try (InputStream is = abrirFichero(fichero)) {
             JSONTokener tokener = new JSONTokener(is);
             JSONArray jsonArray = new JSONArray(tokener);
             alumnos = new Alumno[jsonArray.length()];
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObjectAlumno = jsonArray.getJSONObject(i);
-                String id = jsonObjectAlumno.getString("id");
+                String id = jsonObjectAlumno.optString("id", "");
                 String nombre = jsonObjectAlumno.getString("nombre");
-                boolean matriculado = jsonObjectAlumno.getBoolean("matriculado");
-                String fechaNacimientoStr = jsonObjectAlumno.getString("fechaNacimiento");
+                boolean matriculado = jsonObjectAlumno.optBoolean("matriculado", true);
+                String fechaNacimientoStr = jsonObjectAlumno.optString("fechaNacimiento", jsonObjectAlumno.optString("fecha_nacimiento", "2000-01-01"));
                 LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr);
+
                 JSONArray jsonArrayNotas = jsonObjectAlumno.getJSONArray("notas");
                 Nota[] notas = new Nota[jsonArrayNotas.length()];
                 for (int j = 0; j < jsonArrayNotas.length(); j++) {
                     JSONObject jsonObjectNota = jsonArrayNotas.getJSONObject(j);
                     String asignatura = jsonObjectNota.getString("asignatura");
-                    double nota = jsonObjectNota.getDouble("nota");
+                    double nota = jsonObjectNota.optDouble("nota", jsonObjectNota.optDouble("valor", 0.0));
                     notas[j] = new Nota(asignatura, nota);
                 }
                 alumnos[i] = new Alumno(id, nombre, matriculado, fechaNacimiento, notas);
@@ -151,16 +168,31 @@ public class MainJSON {
 
     public Producto[] parsearInventario(String fichero) throws IOException {
         Producto[] productos = null;
-        try (InputStream is = getClass().getResourceAsStream("/" + fichero)) {
-            if (is == null) return null;
+        try (InputStream is = abrirFichero(fichero)) {
             JSONTokener tokener = new JSONTokener(is);
-            JSONArray jsonArray = new JSONArray(tokener);
+            JSONObject rootObj = new JSONObject(tokener); // Raíz es un objeto JSON
+            JSONArray jsonArray = rootObj.getJSONArray("productos"); // Obtenemos el array interno
+
             productos = new Producto[jsonArray.length()];
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
+                String id = obj.getString("id");
                 String nombre = obj.getString("nombre");
-                String ubicacion = obj.getString("ubicacion");
-                productos[i] = new Producto(nombre, ubicacion);
+                int stock = obj.getInt("stock");
+                double precio = obj.getDouble("precio");
+
+                JSONArray tagsArr = obj.getJSONArray("tags");
+                String[] tags = new String[tagsArr.length()];
+                for (int t = 0; t < tagsArr.length(); t++) {
+                    tags[t] = tagsArr.getString(t);
+                }
+
+                JSONObject ubObj = obj.getJSONObject("ubicacion"); // Objeto anidado de ubicación
+                int pasillo = ubObj.getInt("pasillo");
+                String estante = ubObj.getString("estante");
+                Ubicacion ubicacion = new Ubicacion(pasillo, estante);
+
+                productos[i] = new Producto(id, nombre, stock, precio, tags, ubicacion);
             }
         }
         return productos;
@@ -168,22 +200,31 @@ public class MainJSON {
 
     public Pelicula[] parsearPeliculas(String fichero) throws IOException {
         Pelicula[] peliculas = null;
-        try (InputStream is = getClass().getResourceAsStream("/" + fichero)) {
-            if (is == null) return null;
+        try (InputStream is = abrirFichero(fichero)) {
             JSONTokener tokener = new JSONTokener(is);
-            JSONArray jsonArray = new JSONArray(tokener);
+            JSONObject rootObj = new JSONObject(tokener); // Raíz es un objeto JSON
+            JSONArray jsonArray = rootObj.getJSONArray("peliculas"); // Obtenemos el array interno
+
             peliculas = new Pelicula[jsonArray.length()];
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
+                String id = obj.getString("id");
                 String titulo = obj.getString("titulo");
-                double imdb = obj.getDouble("imdb");
-                double rt = obj.getDouble("rt");
+                String director = obj.getString("director");
+                int estreno = obj.getInt("estreno");
+                int duracionMin = obj.getInt("duracionMin");
+
                 JSONArray jsonGeneros = obj.getJSONArray("generos");
                 String[] generos = new String[jsonGeneros.length()];
                 for (int j = 0; j < jsonGeneros.length(); j++) {
                     generos[j] = jsonGeneros.getString(j);
                 }
-                peliculas[i] = new Pelicula(titulo, generos, imdb, rt);
+
+                JSONObject puntuacionesObj = obj.getJSONObject("puntuaciones"); // Objeto anidado de puntuaciones
+                double imdb = puntuacionesObj.getDouble("imdb");
+                double rt = puntuacionesObj.getDouble("rt");
+
+                peliculas[i] = new Pelicula(id, titulo, director, estreno, duracionMin, generos, imdb, rt);
             }
         }
         return peliculas;
