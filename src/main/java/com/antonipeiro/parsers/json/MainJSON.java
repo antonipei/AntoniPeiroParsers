@@ -1,4 +1,4 @@
-package com.antonipeiro.parsers;
+package com.antonipeiro.parsers.json;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,10 +9,10 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Main {
+public class MainJSON {
 
     public static void main(String[] args) {
-        Main main = new Main();
+        MainJSON main = new MainJSON();
 
         System.out.println("5. LISTADO DE ALUMNOS");
         try {

@@ -1,6 +1,4 @@
-package com.antonipeiro.parsers;
-
-import java.util.List;
+package com.antonipeiro.parsers.json;
 
 public class Pelicula {
     private String titulo;

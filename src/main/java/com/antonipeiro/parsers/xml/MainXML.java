@@ -1,9 +1,5 @@
-package com.antonipeiro.parsers;
+package com.antonipeiro.parsers.xml;
 
-import com.antonipeiro.parsers.xml.Empleado;
-import com.antonipeiro.parsers.xml.ItemPedido;
-import com.antonipeiro.parsers.xml.Libro;
-import com.antonipeiro.parsers.xml.Pedido;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -16,10 +12,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class Main {
+public class MainXML {
 
     public static void main(String[] args) {
-        Main main = new Main();
+        MainXML main = new MainXML();
 
         System.out.println("=== 1. LISTADO SIMPLE DE EMPLEADOS ===");
         try {
@@ -48,7 +44,7 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Error procesando empleados.xml: " + e.getMessage());
         }
-        
+
         System.out.println("\n=== 3. BIBLIOTECA. CONSULTAS Y FILTRADO ===");
         try {
             Libro[] libros = main.parsearBiblioteca("biblioteca.xml");

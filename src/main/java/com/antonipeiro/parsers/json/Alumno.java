@@ -1,4 +1,4 @@
-package com.antonipeiro.parsers;
+package com.antonipeiro.parsers.json;
 
 import java.time.LocalDate;
 

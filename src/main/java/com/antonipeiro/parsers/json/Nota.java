@@ -1,4 +1,4 @@
-package com.antonipeiro.parsers;
+package com.antonipeiro.parsers.json;
 
 public class Nota {
     private final String asignatura;

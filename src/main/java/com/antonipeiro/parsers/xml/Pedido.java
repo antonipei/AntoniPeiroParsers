@@ -1,4 +1,4 @@
-package com.antonipeiro.parsers;
+package com.antonipeiro.parsers.xml;
 
 public class Pedido {
     private String id;
